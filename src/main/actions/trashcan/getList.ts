@@ -4,8 +4,8 @@
  */
 
 import { swhdb } from '@main/data'
-import { IHostsListObject } from '@common/data'
+import { IDotfileListObject } from '@common/data'
 
-export default async (): Promise<IHostsListObject[]> => {
+export default async (): Promise<IDotfileListObject[]> => {
   return await swhdb.list.trashcan.all()
 }

@@ -4,8 +4,8 @@
  */
 
 import splitContent from '@main/actions/find/splitContent'
-import getContentOfHosts from '@main/actions/hosts/getContent'
-import { flatten } from '@common/hostsFn'
+import getDotfileContent from '@main/actions/dotfile/getDotfileContent'
+import { flatten } from '@common/dotfileFn'
 import { IFindItem } from '@common/types'
 import findInContent from 'src/main/actions/find/findPositionsInContent'
 import { getList } from '../index'
@@ -35,7 +35,7 @@ export default async (keyword: string, options: IFindOptions): Promise<IFindItem
     if (item_type === 'group' || item_type === 'folder') {
       continue
     }
-    let content = await getContentOfHosts(item.id)
+    let content = await getDotfileContent(item.id)
     let positions = findInContent(content, exp)
     if (positions.length === 0) {
       continue

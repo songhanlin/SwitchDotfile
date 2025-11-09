@@ -25,11 +25,17 @@ const ItemIcon = (props: Props) => {
   switch (type) {
     case 'folder':
       return is_collapsed ? <IconFolder size={16} /> : <IconFolder size={16} />
+    case 'system_file':
+      // 系统文件类型使用电脑图标
+      return <IconDeviceDesktop size={16} />
     case 'remote':
       return <IconWorld size={16} />
     case 'group':
       return <IconStack2 size={16} />
     case 'system':
+      return <IconDeviceDesktop size={16} />
+    case 'system-default':
+      // 系统默认配置项使用电脑图标
       return <IconDeviceDesktop size={16} />
     case 'trashcan':
       return <IconTrash size={16} />

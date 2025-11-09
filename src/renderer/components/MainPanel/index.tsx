@@ -4,7 +4,7 @@
  * @homepage: https://oldj.net
  */
 
-import HostsEditor from '@renderer/components/Editor/HostsEditor'
+import DotfileEditor from '@renderer/components/Editor/DotfileEditor'
 import useOnBroadcast from '@renderer/core/useOnBroadcast'
 import events from '@common/events'
 import React from 'react'
@@ -27,7 +27,7 @@ const MainPanel = () => {
 
   return (
     <div className={styles.root}>
-      <HostsEditor />
+      <DotfileEditor />
     </div>
   )
 }

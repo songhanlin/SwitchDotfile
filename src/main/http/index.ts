@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello SwitchHosts!')
+  res.send('Hello SwitchDotfile!')
 })
 
 app.get('/remote-test', (req, res) => {
@@ -37,7 +37,7 @@ export const start = (http_api_only_local: boolean): boolean => {
   try {
     let listenIp = http_api_only_local ? '127.0.0.1' : '0.0.0.0'
     server = app.listen(http_api_port, listenIp, function () {
-      console.log(`SwitchHosts HTTP server is listening on port ${http_api_port}!`)
+      console.log(`SwitchDotfile HTTP server is listening on port ${http_api_port}!`)
       console.log(`-> http://${listenIp}:${http_api_port}`)
     })
   } catch (e) {

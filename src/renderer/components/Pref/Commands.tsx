@@ -40,8 +40,8 @@ const Commands = (props: IProps) => {
         <Textarea
           minHeight="200px"
           placeholder={'# echo "ok!"'}
-          value={data.cmd_after_hosts_apply}
-          onChange={(e) => onChange({ cmd_after_hosts_apply: e.target.value })}
+          value={data.cmd_after_dotfile_apply || ''}
+          onChange={(e) => onChange({ cmd_after_dotfile_apply: e.target.value })}
         />
       </FormControl>
 

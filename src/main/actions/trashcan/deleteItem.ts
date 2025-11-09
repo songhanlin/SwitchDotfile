@@ -5,7 +5,7 @@
 
 import { swhdb } from '@main/data'
 import { ITrashcanListObject } from '@common/data'
-import { flatten } from '@common/hostsFn'
+import { flatten } from '@common/dotfileFn'
 
 export default async (id: string): Promise<boolean> => {
   // Permanently delete the specified item with id.
@@ -22,7 +22,7 @@ export default async (id: string): Promise<boolean> => {
   let ids: string[] = [id]
   flatten(trashcan_item.data.children || []).map((i) => ids.push(i.id))
 
-  await swhdb.collection.hosts.delete((i) => ids.includes(i.id))
+  await swhdb.collection.dotfile.delete((i) => ids.includes(i.id))
   await swhdb.list.tree.delete((i) => i.id === id)
   await swhdb.list.trashcan.delete((i) => i.data.id === id)
 

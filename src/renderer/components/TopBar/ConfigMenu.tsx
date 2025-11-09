@@ -17,7 +17,7 @@ import ImportFromUrl from '@renderer/components/TopBar/ImportFromUrl'
 import { actions, agent } from '@renderer/core/agent'
 import { feedback_url, homepage_url } from '@common/constants'
 import events from '@common/events'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 import useI18n from '@renderer/models/useI18n'
 import React, { useState } from 'react'
 import {
@@ -37,7 +37,7 @@ import styles from './ConfigMenu.module.scss'
 
 const ConfigMenu = () => {
   const { lang } = useI18n()
-  const { loadHostsData, setCurrentHosts } = useHostsData()
+  const { loadDotfileData, setCurrentDotfile } = useDotfileData()
   const [show_import_from_url, setShowImportFromUrl] = useState(false)
   const toast = useToast()
 
@@ -129,8 +129,8 @@ const ConfigMenu = () => {
                   description: lang.import_done,
                   isClosable: true,
                 })
-                await loadHostsData()
-                setCurrentHosts(null)
+                await loadDotfileData()
+                setCurrentDotfile(null)
               } else {
                 let description = lang.import_fail
                 if (typeof r === 'string') {

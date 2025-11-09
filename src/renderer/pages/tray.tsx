@@ -8,10 +8,10 @@ import { BiArea } from 'react-icons/bi'
 import styles from './tray.module.scss'
 import useI18n from '@renderer/models/useI18n'
 import useConfigs from '@renderer/models/useConfigs'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
 export default () => {
-  const { loadHostsData } = useHostsData()
+  const { loadDotfileData } = useDotfileData()
   const { setLocale } = useI18n()
   const { configs, loadConfigs } = useConfigs()
   const { colorMode, setColorMode } = useColorMode()
@@ -20,7 +20,7 @@ export default () => {
     if (!configs) return
 
     setLocale(configs.locale)
-    loadHostsData().catch((e) => console.error(e))
+    loadDotfileData().catch((e) => console.error(e))
 
     if (colorMode !== configs.theme) {
       setColorMode(configs.theme)
@@ -40,7 +40,7 @@ export default () => {
 
   return (
     <div className={styles.root}>
-      <h1 className={styles.header}>SwitchHosts</h1>
+      <h1 className={styles.header}>SwitchDotfile</h1>
       <div className={styles.body}>
         <List is_tray={true} />
       </div>

@@ -1,6 +1,6 @@
 import { Button, useToast } from '@chakra-ui/react'
 import About from '@renderer/components/About'
-import EditHostsInfo from '@renderer/components/EditHostsInfo'
+import EditDotfileInfo from '@renderer/components/EditDotfileInfo'
 import History from '@renderer/components/History'
 import LeftPanel from '@renderer/components/LeftPanel'
 import Loading from '@renderer/components/Loading'
@@ -18,12 +18,12 @@ import styles from './index.module.scss'
 import SetWriteMode from '@renderer/components/SetWriteMode'
 import useI18n from '../models/useI18n'
 import useConfigs from '@renderer/models/useConfigs'
-import useHostsData from '../models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
 export default () => {
   const [loading, setLoading] = useState(true)
   const { i18n, lang, setLocale } = useI18n()
-  const { loadHostsData } = useHostsData()
+  const { loadDotfileData } = useDotfileData()
   const { configs } = useConfigs()
   const [left_width, setLeftWidth] = useState(0)
   const [left_show, setLeftShow] = useState(true)
@@ -37,7 +37,7 @@ export default () => {
     } else {
       setShowMigration(false)
     }
-    await loadHostsData()
+    await loadDotfileData()
     setLoading(false)
   }
 
@@ -48,7 +48,7 @@ export default () => {
       return
     }
 
-    await loadHostsData()
+    await loadDotfileData()
     setLoading(false)
   }
 
@@ -136,7 +136,7 @@ export default () => {
         </div>
       </div>
 
-      <EditHostsInfo />
+      <EditDotfileInfo />
       <SudoPasswordInput />
       <SetWriteMode />
       <PreferencePanel />

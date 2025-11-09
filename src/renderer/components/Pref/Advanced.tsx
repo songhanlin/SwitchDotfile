@@ -50,12 +50,13 @@ const PathLink = (props: { link: string }) => {
 const Advanced = (props: IProps) => {
   const { data, onChange } = props
   const { i18n, lang } = useI18n()
-  const [hosts_path, setHostsPath] = useState('')
+  const [dotfile_path, setDotfilePath] = useState('')
   const [data_dir, setDataDir] = useState('')
   const [default_data_dir, setDefaultDataDir] = useState('')
 
   useEffect(() => {
-    actions.getPathOfSystemHosts().then((hosts_path) => setHostsPath(hosts_path))
+    // 系统 dotfile 文件路径示例（/etc/hosts 是一个示例）
+    setDotfilePath('/etc/hosts')
     actions.getDataDir().then((data_dir) => setDataDir(data_dir))
     actions.getDefaultDataDir().then((default_data_dir) => setDefaultDataDir(default_data_dir))
   }, [])
@@ -74,9 +75,9 @@ const Advanced = (props: IProps) => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>{lang.where_is_my_hosts}</FormLabel>
-        <FormHelperText mb={2}>{lang.your_hosts_file_is}</FormHelperText>
-        <PathLink link={hosts_path} />
+        <FormLabel>{lang.where_is_my_dotfile}</FormLabel>
+        <FormHelperText mb={2}>{lang.your_dotfile_is}</FormHelperText>
+        <PathLink link={dotfile_path} />
       </FormControl>
 
       <FormControl>

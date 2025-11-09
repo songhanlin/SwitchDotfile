@@ -27,7 +27,7 @@ const makeTray = async () => {
 
   updateTrayTitle().catch((e) => console.error(e))
 
-  tray.setToolTip('SwitchHosts')
+  tray.setToolTip('SwitchDotfile')
 
   let locale = await configGet('locale')
   if (process.platform === 'linux') {

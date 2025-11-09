@@ -2,7 +2,7 @@
 
 
 
-### SwitchHosts Version / SwitchHosts 版本
+### SwitchDotfile Version / SwitchDotfile 版本
 
 
 

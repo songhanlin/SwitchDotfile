@@ -1,23 +1,23 @@
-# SwitchHosts
+# SwitchDotfile
 
 - [简体中文](README.zh_hans.md)
 - [繁體中文](README.zh_hant.md)
 
-Homepage: [https://switchhosts.vercel.app](https://switchhosts.vercel.app)
+Homepage: [https://switchdotfile.vercel.app](https://switchdotfile.vercel.app)
 
-SwitchHosts is an App for managing hosts file, it is based on [Electron](http://electron.atom.io/)
+SwitchDotfile is an App for managing dot file, it is based on [Electron](http://electron.atom.io/)
 , [React](https://facebook.github.io/react/), [Jotai](https://jotai.org/)
 , [Chakra UI](https://chakra-ui.com/), [CodeMirror](http://codemirror.net/), etc.
 
 ## Screenshot
 
-<img src="https://raw.githubusercontent.com/oldj/SwitchHosts/master/screenshots/sh_light.png" alt="Capture" width="960">
+<img src="https://raw.githubusercontent.com/oldj/SwitchDotfile/master/screenshots/sh_light.png" alt="Capture" width="960">
 
 ## Features
 
-- Switch hosts quickly
+- Switch dotfile quickly
 - Syntax highlight
-- Remote hosts
+- Remote dotfile
 - Switch from system tray
 
 ## Install
@@ -27,17 +27,17 @@ SwitchHosts is an App for managing hosts file, it is based on [Electron](http://
 You can download the source code and build it yourself, or download the built version from following
 links:
 
-- [SwitchHosts Download Page (GitHub release)](https://github.com/oldj/SwitchHosts/releases)
+- [SwitchDotfile Download Page (GitHub release)](https://github.com/oldj/SwitchDotfile/releases)
 
-You can also install the built version using the [package manager Chocolatey](https://community.chocolatey.org/packages/switchhosts):
+You can also install the built version using the [package manager Chocolatey](https://community.chocolatey.org/packages/switchdotfile):
 ```powershell
-choco install switchhosts
+choco install switchdotfile
 ```
 
 ## Backup
 
-SwitchHosts stores data at `~/.SwitchHosts` (Or folder `.SwitchHosts` under the current user's home
-path on Windows), the `~/.SwitchHosts/data` folder contains data, while the `~/.SwitchHosts/config`
+SwitchDotfile stores data at `~/.SwitchDotfile` (Or folder `.SwitchDotfile` under the current user's home
+path on Windows), the `~/.SwitchDotfile/data` folder contains data, while the `~/.SwitchDotfile/config`
 folder contains various configuration information.
 
 ## Develop and build
@@ -72,4 +72,4 @@ npm run make # the packed files will be in ./dist
 
 ## Copyright
 
-SwitchHosts is a free and open source software, it is released under the [Apache License](./LICENSE).
+SwitchDotfile is a free and open source software, it is released under the [Apache License](./LICENSE).

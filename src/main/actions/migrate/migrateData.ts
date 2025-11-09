@@ -8,15 +8,15 @@
 
 import importV3Data from '@main/actions/migrate/importV3Data'
 import getDataFolder from '@main/libs/getDataDir'
-import { IHostsBasicData, VersionType } from '@common/data'
-import { cleanHostsList } from '@common/hostsFn'
+import { IDotfileBasicData, VersionType } from '@common/data'
+import { cleanHostsList } from '@common/dotfileFn'
 import version from '@/version.json'
 import * as fs from 'fs'
 import path from 'path'
 
-const readOldData = async (): Promise<IHostsBasicData> => {
+const readOldData = async (): Promise<IDotfileBasicData> => {
   const fn = path.join(await getDataFolder(), 'data.json')
-  const default_data: IHostsBasicData = {
+  const default_data: IDotfileBasicData = {
     list: [],
     trashcan: [],
     version: version as VersionType,
@@ -28,7 +28,7 @@ const readOldData = async (): Promise<IHostsBasicData> => {
 
   let content = await fs.promises.readFile(fn, 'utf-8')
   try {
-    let data = JSON.parse(content) as IHostsBasicData
+    let data = JSON.parse(content) as IDotfileBasicData
     return cleanHostsList(data)
   } catch (e) {
     console.error(e)

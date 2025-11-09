@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { agent } from '@renderer/core/agent'
 import useOnBroadcast from '@renderer/core/useOnBroadcast'
-import { IHostsListObject } from '@common/data'
+import { IDotfileListObject } from '@common/data'
 import events from '@common/events'
 import React, { useState } from 'react'
 import useI18n from '../models/useI18n'
@@ -26,7 +26,7 @@ const SudoPasswordInput = () => {
   const { lang } = useI18n()
   const [is_show, setIsShow] = useState(false)
   const [pswd, setPswd] = useState('')
-  const [tmp_list, setTmpList] = useState<IHostsListObject[] | undefined>()
+  const [tmp_list, setTmpList] = useState<IDotfileListObject[] | undefined>()
   const ipt_ref = React.useRef<HTMLInputElement>(null)
 
   const onCancel = () => {
@@ -37,12 +37,12 @@ const SudoPasswordInput = () => {
   const onOk = async () => {
     setIsShow(false)
     setPswd('')
-    agent.broadcast(events.write_hosts_to_system, tmp_list, { sudo_pswd: pswd })
+    agent.broadcast(events.write_dotfile_to_system, tmp_list, { sudo_pswd: pswd })
   }
 
   useOnBroadcast(
     events.show_sudo_password_input,
-    (tmp_list?: IHostsListObject[]) => {
+    (tmp_list?: IDotfileListObject[]) => {
       setTmpList(tmp_list)
       setIsShow(true)
       // console.log(tmp_list)

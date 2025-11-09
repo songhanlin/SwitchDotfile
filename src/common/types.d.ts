@@ -4,7 +4,7 @@
  * @homepage: https://oldj.net
  */
 
-import { HostsType } from '@common/data'
+import { DotfileType } from '@common/data'
 import { MenuItemConstructorOptions, WebContents } from 'electron'
 import { default as lang } from './i18n/languages/en'
 import * as actions from '@main/actions'
@@ -51,7 +51,7 @@ export interface IFindSplitter {
 export interface IFindItem {
   item_id: string
   item_title: string
-  item_type: HostsType
+  item_type: DotfileType
   positions: IFindPosition[]
   splitters: IFindSplitter[]
 }

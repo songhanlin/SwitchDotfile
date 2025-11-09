@@ -13,11 +13,11 @@ import React, { useEffect, useState } from 'react'
 import { BiChevronRight } from 'react-icons/bi'
 import styles from './Trashcan.module.scss'
 import useI18n from '@renderer/models/useI18n'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
 const Trashcan = () => {
   const { lang } = useI18n()
-  const { hosts_data, current_hosts, setCurrentHosts } = useHostsData()
+  const { dotfile_data, current_dotfile, setCurrentDotfile } = useDotfileData()
   const [trash_list, setTrashList] = useState<ITrashcanListObject[]>([])
   const [is_collapsed, setIsCollapsed] = useState(true)
 
@@ -40,7 +40,7 @@ const Trashcan = () => {
 
     let list: ITrashcanListObject[] = [root]
 
-    hosts_data.trashcan.map((i) => {
+    dotfile_data.trashcan.map((i) => {
       root.children &&
         root.children.push({
           ...i,
@@ -51,13 +51,13 @@ const Trashcan = () => {
     })
 
     setTrashList(list)
-  }, [hosts_data.trashcan, is_collapsed])
+  }, [dotfile_data.trashcan, is_collapsed])
 
   const onSelect = (ids: string[]) => {
     let id = ids[0]
-    let item = hosts_data.trashcan.find((i) => i.data.id === id)
+    let item = dotfile_data.trashcan.find((i) => i.data.id === id)
     if (!item) return
-    setCurrentHosts(item.data)
+    setCurrentDotfile(item.data)
   }
 
   return (
@@ -74,7 +74,7 @@ const Trashcan = () => {
         nodeSelectedClassName={list_styles.node_selected}
         nodeCollapseArrowClassName={list_styles.arrow}
         onSelect={onSelect}
-        selected_ids={current_hosts ? [current_hosts.id] : []}
+        selected_ids={current_dotfile ? [current_dotfile.id] : []}
         onChange={(list) => setIsCollapsed(!!list[0]?.is_collapsed)}
       />
     </div>

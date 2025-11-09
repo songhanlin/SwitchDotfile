@@ -4,12 +4,12 @@
  */
 
 import { swhdb } from '@main/data'
-import { IHostsBasicData, IHostsListObject, ITrashcanListObject, VersionType } from '@common/data'
-import { flatten } from '@common/hostsFn'
+import { IDotfileBasicData, IDotfileListObject, ITrashcanListObject, VersionType } from '@common/data'
+import { flatten, findItemById } from '@common/dotfileFn'
 import { v4 as uuid4 } from 'uuid'
 import version from '@/version.json'
 
-const normalizeList = (list: IHostsListObject[]): IHostsListObject[] => {
+const normalizeList = (list: IDotfileListObject[]): IDotfileListObject[] => {
   let flat = flatten(list)
   flat.map((item) => {
     if (!item.id) {
@@ -30,8 +30,8 @@ const normalizeTrashcan = (list: ITrashcanListObject[]): ITrashcanListObject[] =
   return list
 }
 
-export default async (): Promise<IHostsBasicData> => {
-  const default_data: IHostsBasicData = {
+export default async (): Promise<IDotfileBasicData> => {
+  const default_data: IDotfileBasicData = {
     list: [],
     trashcan: [],
     version: version as VersionType,

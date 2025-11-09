@@ -22,7 +22,7 @@ import ItemIcon from '@renderer/components/ItemIcon'
 import { actions, agent } from '@renderer/core/agent'
 import { PopupMenu } from '@renderer/core/PopupMenu'
 import useOnBroadcast from '@renderer/core/useOnBroadcast'
-import { HostsType } from '@common/data'
+import { DotfileType } from '@common/data'
 import events from '@common/events'
 import { IFindItem, IFindPosition, IFindShowSourceParam } from '@common/types'
 import { useDebounce, useDebounceFn } from 'ahooks'
@@ -44,7 +44,7 @@ import styles from './find.module.scss'
 interface IFindPositionShow extends IFindPosition {
   item_id: string
   item_title: string
-  item_type: HostsType
+  item_type: DotfileType
   index: number
   is_disabled?: boolean
   is_readonly?: boolean
@@ -214,8 +214,8 @@ const find = () => {
     const content = splitters
       .map((sp) => `${sp.before}${sp.replace ?? sp.match}${sp.after}`)
       .join('')
-    await actions.setHostsContent(pos.item_id, content)
-    agent.broadcast(events.hosts_refreshed_by_id, pos.item_id)
+    await actions.setDotfileContent(pos.item_id, content)
+    agent.broadcast(events.dotfile_refreshed_by_id, pos.item_id)
 
     if (current_result_idx < find_positions.length - 1) {
       setCurrentResultIdx(current_result_idx + 1)
@@ -227,8 +227,8 @@ const find = () => {
       let { item_id, item_type, splitters } = item
       if (item_type !== 'local' || splitters.length === 0) continue
       const content = splitters.map((sp) => `${sp.before}${replace_to}${sp.after}`).join('')
-      await actions.setHostsContent(item_id, content)
-      agent.broadcast(events.hosts_refreshed_by_id, item_id)
+      await actions.setDotfileContent(item_id, content)
+      agent.broadcast(events.dotfile_refreshed_by_id, item_id)
     }
 
     setFindPositions(

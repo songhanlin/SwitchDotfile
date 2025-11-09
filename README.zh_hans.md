@@ -1,24 +1,24 @@
-# SwitchHosts
+# SwitchDotfile
 
 - [English](README.md)
 - [繁體中文](README.zh_hant.md)
 
-项目主页：[https://switchhosts.vercel.app](https://switchhosts.vercel.app)
+项目主页：[https://switchdotfile.vercel.app](https://switchdotfile.vercel.app)
 
-SwitchHosts 是一个管理 hosts 文件的应用，基于 [Electron](http://electron.atom.io/)
+SwitchDotfile 是一个管理 dot 文件的应用，基于 [Electron](http://electron.atom.io/)
 、[React](https://facebook.github.io/react/)、[Jotai](https://jotai.org/)
 、[Chakra UI](https://chakra-ui.com/)、[CodeMirror](http://codemirror.net/) 等技术开发。
 
 ## 截图
 
-<img src="https://raw.githubusercontent.com/oldj/SwitchHosts/master/screenshots/sh_light.png" alt="Capture" width="960">
+<img src="https://raw.githubusercontent.com/oldj/SwitchDotfile/master/screenshots/sh_light.png" alt="Capture" width="960">
 
 ## 功能特性
 
-- 快速切换 hosts 方案
-- hosts 语法高亮
-- 支持从网络加载远程 hosts 配置
-- 可从系统菜单栏图标快速切换 hosts
+- 快速切换 dotfile 方案
+- dotfile 语法高亮
+- 支持从网络加载远程 dotfile 配置
+- 可从系统菜单栏图标快速切换 dotfile
 
 ## 安装
 
@@ -26,17 +26,17 @@ SwitchHosts 是一个管理 hosts 文件的应用，基于 [Electron](http://ele
 
 你可以下载源码并自行构建，也可以从以下地址下载已构建好的版本：
 
-- [SwitchHosts Download Page (GitHub release)](https://github.com/oldj/SwitchHosts/releases)
+- [SwitchDotfile Download Page (GitHub release)](https://github.com/oldj/SwitchDotfile/releases)
 
-你也可以通过 [Chocolatey 包管理器](https://community.chocolatey.org/packages/switchhosts)安装已构建好的版本：
+你也可以通过 [Chocolatey 包管理器](https://community.chocolatey.org/packages/switchdotfile)安装已构建好的版本：
 ```powershell
-choco install switchhosts
+choco install switchdotfile
 ```
 
 ## 数据备份
 
-SwitchHosts 的数据文件存储于 `~/.SwitchHosts` (Windows 下存储于用户个人文件夹下的 `.SwitchHosts` 文件夹），
-其中 `~/.SwitchHosts/data` 文件夹包含数据，`~/.SwitchHosts/config` 文件夹包含各项配置信息。
+SwitchDotfile 的数据文件存储于 `~/.SwitchDotfile` (Windows 下存储于用户个人文件夹下的 `.SwitchDotfile` 文件夹），
+其中 `~/.SwitchDotfile/data` 文件夹包含数据，`~/.SwitchDotfile/config` 文件夹包含各项配置信息。
 
 ## 开发以及构建
 
@@ -67,4 +67,4 @@ npm run make # the packed files will be in ./dist
 
 ## 版权
 
-SwitchHosts 是一个免费开源软件，基于 Apache-2.0 协议发布。
+SwitchDotfile 是一个免费开源软件，基于 Apache-2.0 协议发布。

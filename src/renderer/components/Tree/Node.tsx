@@ -179,6 +179,21 @@ const Node = (props: INodeProps) => {
   }
 
   const onUpdate = (kv: Partial<ITreeNodeData>) => {
+    // 对于 folder 或 system_file 类型且有 file_path 的项目（dotfile 文件夹或系统文件），不允许改变折叠状态
+    if ((data.type === 'folder' || data.type === 'system_file') && (data as any).file_path) {
+      // 如果尝试改变 is_collapsed，忽略这个更改
+      if ('is_collapsed' in kv) {
+        kv = { ...kv }
+        delete kv.is_collapsed
+      }
+    }
+    // 对于 system_file 类型，即使没有 file_path 也不允许改变折叠状态
+    if (data.type === 'system_file') {
+      if ('is_collapsed' in kv) {
+        kv = { ...kv }
+        delete kv.is_collapsed
+      }
+    }
     onChange(data.id, kv)
   }
 
@@ -239,19 +254,30 @@ const Node = (props: INodeProps) => {
         >
           <div className={styles.ln_header} data-role="tree-node-header">
             {has_children ? (
-              <div
-                className={clsx(
-                  styles.arrow,
-                  nodeCollapseArrowClassName,
-                  data.is_collapsed && styles.collapsed,
-                )}
-                data-collapsed={!!data.is_collapsed}
+              // 对于 folder 或 system_file 类型且有 file_path 的项目（dotfile 文件夹或系统文件），不显示折叠箭头，始终展开
+              ((data.type === 'folder' || data.type === 'system_file') && (data as any).file_path) || data.type === 'system_file' ? null : (
+                <div
+                  className={clsx(
+                    styles.arrow,
+                    nodeCollapseArrowClassName,
+                    data.is_collapsed && styles.collapsed,
+                  )}
+                  data-collapsed={!!data.is_collapsed}
                 onClick={() => {
+                  // 对于 folder 或 system_file 类型且有 file_path 的项目（dotfile 文件夹或系统文件），不允许改变折叠状态
+                  if ((data.type === 'folder' || data.type === 'system_file') && (data as any).file_path) {
+                    return
+                  }
+                  // 对于 system_file 类型，即使没有 file_path 也不允许改变折叠状态
+                  if (data.type === 'system_file') {
+                    return
+                  }
                   props.onChange(data.id, { is_collapsed: !data.is_collapsed })
                 }}
-              >
-                {props.collapseArrow ? props.collapseArrow : '>'}
-              </div>
+                >
+                  {props.collapseArrow ? props.collapseArrow : '>'}
+                </div>
+              )
             ) : null}
           </div>
           <div className={styles.ln_body} data-role="tree-node-body">
@@ -264,11 +290,14 @@ const Node = (props: INodeProps) => {
           {draggingNodeRender(data, selected_ids.includes(data.id) ? selected_ids : [data.id])}
         </div>
       )}
-      {has_children && data.children && !data.is_collapsed
-        ? data.children.map((node) => (
-            <Node {...props} key={node.id} data={node} level={level + 1} />
-          ))
-        : null}
+      {has_children && data.children && (
+        // 对于 folder 或 system_file 类型且有 file_path 的项目（dotfile 文件夹或系统文件），始终展开（忽略 is_collapsed）
+        ((data.type === 'folder' || data.type === 'system_file') && (data as any).file_path) || data.type === 'system_file' || !data.is_collapsed
+          ? data.children.map((node) => (
+              <Node {...props} key={node.id} data={node} level={level + 1} />
+            ))
+          : null
+      )}
     </>
   )
 }

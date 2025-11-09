@@ -101,7 +101,7 @@ const doMake = async () => {
     ...targets,
     config: {
       ...cfg_common,
-      appId: 'SwitchHosts',
+      appId: 'SwitchDotfile',
       productName: APP_NAME,
       mac: {
         type: 'distribution',
@@ -153,7 +153,7 @@ const doMake = async () => {
         oneClick: false,
         allowToChangeInstallationDirectory: true,
         deleteAppDataOnUninstall: false,
-        shortcutName: 'SwitchHosts',
+        shortcutName: 'SwitchDotfile',
         artifactName: '${productName}_windows_installer_${arch}_${version}(${buildVersion}).${ext}',
       },
       portable: {
@@ -163,17 +163,17 @@ const doMake = async () => {
         icon: 'assets/app.icns',
         artifactName: '${productName}_linux_${arch}_${version}(${buildVersion}).${ext}',
         category: 'Utility',
-        synopsis: 'An App for hosts management and switching.',
+        synopsis: 'An App for dotfile management and switching.',
         desktop: {
-          Name: 'SwitchHosts',
+          Name: 'SwitchDotfile',
           Type: 'Application',
-          GenericName: 'An App for hosts management and switching.',
+          GenericName: 'An App for dotfile management and switching.',
         },
       },
       publish: {
         provider: 'github',
         owner: 'oldj',
-        repo: 'SwitchHosts',
+        repo: 'SwitchDotfile',
       },
     },
   })

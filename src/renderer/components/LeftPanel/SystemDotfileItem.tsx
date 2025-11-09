@@ -1,5 +1,5 @@
 /**
- * SystemHostsItem
+ * SystemDotfileItem
  * @author: oldj
  * @homepage: https://oldj.net
  */
@@ -7,18 +7,18 @@
 import ItemIcon from '@renderer/components/ItemIcon'
 import clsx from 'clsx'
 import React from 'react'
-import styles from './SystemHostsItem.module.scss'
+import styles from './SystemDotfileItem.module.scss'
 import useI18n from '@renderer/models/useI18n'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
-const SystemHostsItem = () => {
+const SystemDotfileItem = () => {
   const { i18n } = useI18n()
-  const { current_hosts, setCurrentHosts } = useHostsData()
+  const { current_dotfile, setCurrentDotfile } = useDotfileData()
 
-  const is_selected = !current_hosts
+  const is_selected = !current_dotfile
 
   const showSystemHosts = () => {
-    setCurrentHosts(null)
+    setCurrentDotfile(null)
   }
 
   return (
@@ -26,9 +26,9 @@ const SystemHostsItem = () => {
       <span className={styles.icon}>
         <ItemIcon type="system" />
       </span>
-      <span>{i18n.lang.system_hosts}</span>
+      <span>{i18n.lang.system_dotfile}</span>
     </div>
   )
 }
 
-export default SystemHostsItem
+export default SystemDotfileItem

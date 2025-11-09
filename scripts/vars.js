@@ -3,7 +3,7 @@ const path = require('path')
 const root_dir = path.normalize(path.join(__dirname, '..'))
 const dist_dir = path.normalize(path.join(__dirname, '..', 'dist'))
 
-const APP_NAME = 'SwitchHosts'
+const APP_NAME = 'SwitchDotfile'
 
 const electronLanguages = ['en', 'fr', 'zh_CN', 'de', 'ja', 'tr', 'ko']
 

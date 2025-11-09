@@ -1,3 +1,3 @@
-SwitchHosts! is an App for switching hosts quickly.
+SwitchDotfile! is an App for switching dotfile quickly.
 
-Homepage: https://oldj.github.io/SwitchHosts/
+Homepage: https://oldj.github.io/SwitchDotfile/

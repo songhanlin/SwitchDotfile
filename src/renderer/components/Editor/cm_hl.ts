@@ -3,7 +3,7 @@
 import CodeMirror from 'codemirror'
 
 export default function () {
-  CodeMirror.defineMode('hosts', function () {
+  CodeMirror.defineMode('dotfile', function () {
     function tokenBase(stream: CodeMirror.StringStream) {
       if (stream.eatSpace()) return null
 
@@ -43,5 +43,5 @@ export default function () {
     }
   })
 
-  //CodeMirror.defineMIME('text/x-hosts', 'hosts');
+  //CodeMirror.defineMIME('text/x-dotfile', 'dotfile');
 }

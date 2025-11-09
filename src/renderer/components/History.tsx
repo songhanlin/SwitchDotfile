@@ -24,10 +24,10 @@ import {
   Tooltip,
   VStack,
 } from '@chakra-ui/react'
-import HostsViewer from '@renderer/components/HostsViewer'
+import DotfileViewer from '@renderer/components/DotfileViewer'
 import { actions } from '@renderer/core/agent'
 import useOnBroadcast from '@renderer/core/useOnBroadcast'
-import { IHostsHistoryObject } from '@common/data'
+import { IDotfileHistoryObject } from '@common/data'
 import events from '@common/events'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
@@ -39,9 +39,9 @@ import styles from './History.module.scss'
 import { IconFileTime, IconHelpCircle, IconHistory, IconX } from '@tabler/icons-react'
 
 interface IHistoryProps {
-  list: IHostsHistoryObject[]
-  selected_item: IHostsHistoryObject | undefined
-  setSelectedItem: (item: IHostsHistoryObject) => void
+  list: IDotfileHistoryObject[]
+  selected_item: IDotfileHistoryObject | undefined
+  setSelectedItem: (item: IDotfileHistoryObject) => void
 }
 
 const HistoryList = (props: IHistoryProps): React.ReactElement => {
@@ -59,7 +59,7 @@ const HistoryList = (props: IHistoryProps): React.ReactElement => {
   return (
     <Flex h="100%" minHeight="300px">
       <Box flex={1} mr={3} borderWidth="1px" borderRadius="md">
-        <HostsViewer content={selected_item ? selected_item.content : ''} />
+        <DotfileViewer content={selected_item ? selected_item.content : ''} />
       </Box>
       <List w="200px" h="100%" overflow="auto" borderWidth="1px" borderRadius="md">
         {list.map((item) => (
@@ -103,8 +103,8 @@ const History = () => {
   const { configs, updateConfigs } = useConfigs()
   const [is_open, setIsOpen] = useState(false)
   const [is_loading, setIsLoading] = useState(false)
-  const [list, setList] = useState<IHostsHistoryObject[]>([])
-  const [selected_item, setSelectedItem] = useState<IHostsHistoryObject>()
+  const [list, setList] = useState<IDotfileHistoryObject[]>([])
+  const [selected_item, setSelectedItem] = useState<IDotfileHistoryObject>()
   // const btn_close = useRef(null)
 
   const { lang } = useI18n()
@@ -129,7 +129,7 @@ const History = () => {
   }
 
   const deleteItem = async (id: string) => {
-    if (!confirm(lang.system_hosts_history_delete_confirm)) {
+    if (!confirm(lang.system_dotfile_history_delete_confirm)) {
       return
     }
 
@@ -179,7 +179,7 @@ const History = () => {
             <Box mr={1}>
               <IconHistory size={16} />
             </Box>
-            <Box>{lang.system_hosts_history}</Box>
+            <Box>{lang.system_dotfile_history}</Box>
           </HStack>
         </DrawerHeader>
         <DrawerBody>
@@ -195,7 +195,7 @@ const History = () => {
         </DrawerBody>
         <DrawerFooter>
           <Flex width="100%" align="center">
-            <Box mr={3}>{lang.system_hosts_history_limit}</Box>
+            <Box mr={3}>{lang.system_dotfile_history_limit}</Box>
             <Box>
               <Select
                 value={configs?.history_limit}
@@ -208,7 +208,7 @@ const History = () => {
                 ))}
               </Select>
             </Box>
-            <Tooltip label={lang.system_hosts_history_help} aria-label="A tooltip">
+            <Tooltip label={lang.system_dotfile_history_help} aria-label="A tooltip">
               <Box ml={3}>
                 <IconHelpCircle size={16} />
               </Box>

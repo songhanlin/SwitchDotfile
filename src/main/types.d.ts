@@ -18,6 +18,16 @@ export interface ActionData {
 
 export interface IHostsWriteOptions {
   sudo_pswd?: string
+  write_mode?: 'append' | 'overwrite'
+  silent?: boolean // 如果为 true，不触发 system_dotfile_updated 事件
+}
+
+export interface IWriteResult {
+  success: boolean
+  code?: string
+  message?: string
+  old_content?: string
+  new_content?: string
 }
 
 declare global {
@@ -29,7 +39,7 @@ declare global {
   var session_id: string // A random value, refreshed every time the app starts, used to identify different startup sessions.
   var main_win: BrowserWindow
   var find_win: BrowserWindow | null
-  var last_path: string // the last path opened by SwitchHosts
+  var last_path: string // the last path opened by SwitchDotfile
   var tracer: Tracer
   var is_will_quit: boolean
   var system_locale: LocaleName

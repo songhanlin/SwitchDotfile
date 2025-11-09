@@ -32,7 +32,7 @@ export const GET = async (
   }
 
   const default_headers = {
-    'user-agent': `${global.ua} SwitchHosts/${version.join('.')}`,
+    'user-agent': `${global.ua} SwitchDotfile/${version.join('.')}`,
   }
 
   let configs: AxiosRequestConfig = {

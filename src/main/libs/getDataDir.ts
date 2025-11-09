@@ -7,7 +7,7 @@ import * as path from 'path'
 import { homedir } from 'os'
 
 export function getDefaultDataDir() {
-  return path.join(homedir(), '.SwitchHosts')
+  return path.join(homedir(), '.SwitchDotfile')
 }
 
 export default (): string => {

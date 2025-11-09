@@ -9,7 +9,7 @@ import { broadcast } from '@main/core/agent'
 import { swhdb } from '@main/data'
 import safePSWD from '@main/libs/safePSWD'
 import { IHostsWriteOptions } from '@main/types'
-import { IHostsHistoryObject } from '@common/data'
+import { IDotfileHistoryObject } from '@common/data'
 import events from '@common/events'
 import { exec } from 'child_process'
 import * as fs from 'fs'
@@ -18,7 +18,7 @@ import md5File from 'md5-file'
 import * as os from 'os'
 import * as path from 'path'
 import { v4 as uuid4 } from 'uuid'
-import getPathOfSystemHosts from './getPathOfSystemHostsPath'
+import getPathOfSystemHosts from './getPathOfSystemHostsPath' // 保留系统 hosts 文件路径函数
 
 interface IWriteResult {
   success: boolean
@@ -52,7 +52,7 @@ const addHistory = async (content: string) => {
   let history_limit = await configGet('history_limit')
   if (typeof history_limit !== 'number' || history_limit <= 0) return
 
-  let lists = await swhdb.collection.history.all<IHostsHistoryObject>()
+  let lists = await swhdb.collection.history.all<IDotfileHistoryObject>()
   if (lists.length <= history_limit) {
     return
   }
@@ -202,7 +202,7 @@ const setSystemHosts = async (
 
     await addHistory(content)
     await updateTrayTitle()
-    broadcast(events.system_hosts_updated)
+    broadcast(events.system_dotfile_updated)
 
     await tryToRun()
   }

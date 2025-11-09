@@ -6,7 +6,7 @@
 import { getList, setList } from '@main/actions'
 import { swhdb } from '@main/data'
 import { getNodeById } from '@common/tree'
-import { IHostsListObject, ITrashcanListObject } from '@common/data'
+import { IDotfileListObject, ITrashcanListObject } from '@common/data'
 
 export default async (id: string): Promise<boolean> => {
   let trashcan_item: ITrashcanListObject | undefined = await swhdb.list.trashcan.find(
@@ -18,8 +18,8 @@ export default async (id: string): Promise<boolean> => {
     return false
   }
 
-  let hosts = trashcan_item.data
-  if (!hosts || !hosts.id) {
+  let dotfile = trashcan_item.data
+  if (!dotfile || !dotfile.id) {
     console.log(`bad trashcan_item!`)
     return false
   }
@@ -28,15 +28,15 @@ export default async (id: string): Promise<boolean> => {
   let { parent_id } = trashcan_item
 
   if (!parent_id) {
-    await setList([...list, hosts])
+    await setList([...list, dotfile])
   } else {
-    let parent_hosts = getNodeById<IHostsListObject>(list, parent_id)
-    if (!parent_hosts) {
-      console.log(`can't find parent_hosts with id #${parent_id}.`)
+    let parent_dotfile = getNodeById<IDotfileListObject>(list, parent_id)
+    if (!parent_dotfile) {
+      console.log(`can't find parent_dotfile with id #${parent_id}.`)
       return false
     }
 
-    parent_hosts.children = [...(parent_hosts.children || []), hosts]
+    parent_dotfile.children = [...(parent_dotfile.children || []), dotfile]
     await setList(list)
   }
 

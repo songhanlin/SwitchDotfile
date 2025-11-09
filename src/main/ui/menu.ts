@@ -189,7 +189,7 @@ export const makeMainMenu = (locale: LocaleName = 'en') => {
     },
   ]
 
-  const name = 'SwitchHosts'
+  const name = 'SwitchDotfile'
   const os = process.platform
   if (os === 'darwin') {
     template.unshift({

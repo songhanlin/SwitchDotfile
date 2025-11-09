@@ -26,7 +26,7 @@ const run = (cmd: string): Promise<ICommandRunResult> =>
   })
 
 export default async () => {
-  let cmd = await cfgdb.dict.cfg.get('cmd_after_hosts_apply')
+  let cmd = await cfgdb.dict.cfg.get('cmd_after_dotfile_apply')
 
   if (!cmd || typeof cmd !== 'string' || !cmd.trim()) {
     return

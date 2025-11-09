@@ -1,24 +1,24 @@
-# SwitchHosts
+# SwitchDotfile
 
 - [English](README.md)
 - [简体中文](README.zh_hans.md)
 
-項目主頁：[https://switchhosts.vercel.app](https://switchhosts.vercel.app)
+項目主頁：[https://switchdotfile.vercel.app](https://switchdotfile.vercel.app)
 
-SwitchHosts 是一個管理 hosts 檔案的應用程式，基於 [Electron](http://electron.atom.io/)
+SwitchDotfile 是一個管理 dot 檔案的應用程式，基於 [Electron](http://electron.atom.io/)
 、[React](https://facebook.github.io/react/)、[Jotai](https://jotai.org/)
 、[Chakra UI](https://chakra-ui.com/)、[CodeMirror](http://codemirror.net/) 等技術開發。
 
 ## 螢幕截圖
 
-<img src="https://raw.githubusercontent.com/oldj/SwitchHosts/master/screenshots/sh_light.png" alt="Capture" width="960">
+<img src="https://raw.githubusercontent.com/oldj/SwitchDotfile/master/screenshots/sh_light.png" alt="Capture" width="960">
 
 ## 功能特性
 
-- 快速切換 hosts 方案
-- hosts 語法高亮顯示
-- 支援從網路載入遠程 hosts 設定
-- 可從系統菜單欄圖是快速切換 hosts
+- 快速切換 dotfile 方案
+- dotfile 語法高亮顯示
+- 支援從網路載入遠程 dotfile 設定
+- 可從系統菜單欄圖是快速切換 dotfile
 
 ## 安裝
 
@@ -26,17 +26,17 @@ SwitchHosts 是一個管理 hosts 檔案的應用程式，基於 [Electron](http
 
 你可以下載原始碼並自行建置，也可以從以下網址下載已經建置好的版本：
 
-- [SwitchHosts Download Page (GitHub release)](https://github.com/oldj/SwitchHosts/releases)
+- [SwitchDotfile Download Page (GitHub release)](https://github.com/oldj/SwitchDotfile/releases)
 
-你也可以通過 [Chocolatey 包管理器](https://community.chocolatey.org/packages/switchhosts)安裝已經建置好的版本：
+你也可以通過 [Chocolatey 包管理器](https://community.chocolatey.org/packages/switchdotfile)安裝已經建置好的版本：
 ```powershell
-choco install switchhosts
+choco install switchdotfile
 ```
 
 ## 數據備份
 
-SwitchHosts 的數據文件儲存於 `~/.SwitchHosts` (Windows 下儲存使用者個人文件裡的 `.SwitchHosts` 資料夾），
-其中 `~/.SwitchHosts/data` 資料夾包含數據，`~/.SwitchHosts/config` 資料夾包含各種設定。
+SwitchDotfile 的數據文件儲存於 `~/.SwitchDotfile` (Windows 下儲存使用者個人文件裡的 `.SwitchDotfile` 資料夾），
+其中 `~/.SwitchDotfile/data` 資料夾包含數據，`~/.SwitchDotfile/config` 資料夾包含各種設定。
 
 ## 開發及建置
 
@@ -65,4 +65,4 @@ npm run make # the packed files will be in ./dist
 
 ## 版權聲明
 
-SwitchHosts 是一個免費開源軟體，基於 Apache-2.0 開源協議發佈。
+SwitchDotfile 是一個免費開源軟體，基於 Apache-2.0 開源協議發佈。

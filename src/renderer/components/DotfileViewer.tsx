@@ -1,18 +1,18 @@
 /**
- * HostsViewer
+ * DotfileViewer
  * @author: oldj
  * @homepage: https://oldj.net
  */
 
 import StatusBar from '@renderer/components/StatusBar'
 import React from 'react'
-import styles from './HostsViewer.module.scss'
+import styles from './DotfileViewer.module.scss'
 
 interface Props {
   content: string
 }
 
-const HostsViewer = (props: Props) => {
+const DotfileViewer = (props: Props) => {
   const { content } = props
   const lines = content.split('\n')
 
@@ -32,4 +32,4 @@ const HostsViewer = (props: Props) => {
   )
 }
 
-export default HostsViewer
+export default DotfileViewer

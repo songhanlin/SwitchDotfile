@@ -4,30 +4,30 @@
  * @homepage: https://oldj.net
  */
 
-import { getHostsContent, setHostsContent, setList } from '@main/actions/index'
+import { getDotfileContent, setDotfileContent, setList } from '@main/actions/index'
 import { broadcast } from '@main/core/agent'
 
 import { swhdb } from '@main/data'
 import { GET } from '@main/libs/request'
-import { IHostsListObject, IOperationResult } from '@common/data'
+import { IDotfileListObject, IOperationResult } from '@common/data'
 import events from '@common/events'
-import * as hostsFn from '@common/hostsFn'
+import * as dotfileFn from '@common/dotfileFn'
 import dayjs from 'dayjs'
 import * as fs from 'fs'
 import { URL } from 'url'
 
-export default async (hosts_id: string): Promise<IOperationResult> => {
+const refreshDotfile = async (dotfile_id: string): Promise<IOperationResult> => {
   let list = await swhdb.list.tree.all()
-  let hosts: IHostsListObject | undefined = hostsFn.findItemById(list, hosts_id)
+  let dotfile: IDotfileListObject | undefined = dotfileFn.findItemById(list, dotfile_id)
 
-  if (!hosts) {
+  if (!dotfile) {
     return {
       success: false,
       code: 'invalid_id',
     }
   }
 
-  let { type, url } = hosts
+  let { type, url } = dotfile
 
   if (type !== 'remote') {
     return {
@@ -43,7 +43,7 @@ export default async (hosts_id: string): Promise<IOperationResult> => {
     }
   }
 
-  let old_content: string = await getHostsContent(hosts.id)
+  let old_content: string = await getDotfileContent(dotfile.id)
   let new_content: string
   try {
     console.log(`-> refreshHosts URL: "${url}"`)
@@ -61,19 +61,22 @@ export default async (hosts_id: string): Promise<IOperationResult> => {
     }
   }
 
-  hosts.last_refresh = dayjs().format('YYYY-MM-DD HH:mm:ss')
-  hosts.last_refresh_ms = new Date().getTime()
+  dotfile.last_refresh = dayjs().format('YYYY-MM-DD HH:mm:ss')
+  dotfile.last_refresh_ms = new Date().getTime()
 
   await setList(list)
 
   if (old_content !== new_content) {
-    await setHostsContent(hosts_id, new_content)
-    broadcast(events.hosts_refreshed, hosts)
-    broadcast(events.hosts_content_changed, hosts_id)
+    await setDotfileContent(dotfile_id, new_content)
+    broadcast(events.dotfile_refreshed, dotfile)
+    broadcast(events.dotfile_content_changed, dotfile_id)
   }
 
   return {
     success: true,
-    data: { ...hosts },
+    data: { ...dotfile },
   }
 }
+
+export default refreshDotfile
+export { refreshDotfile }

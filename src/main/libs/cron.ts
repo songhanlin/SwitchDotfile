@@ -4,17 +4,17 @@
  * @homepage: https://oldj.net
  */
 
-import { checkUpdate, configGet, getList, refreshHosts } from '@main/actions'
+import { checkUpdate, configGet, getList, refreshDotfile } from '@main/actions'
 import { broadcast } from '@main/core/agent'
-import { IHostsListObject } from '@common/data'
+import { IDotfileListObject } from '@common/data'
 import events from '@common/events'
-import { flatten } from '@common/hostsFn'
+import { flatten } from '@common/dotfileFn'
 
 let t: any
 let ts_last_server_check = 0
 
-const isNeedRefresh = (hosts: IHostsListObject): boolean => {
-  let { refresh_interval, last_refresh_ms, url } = hosts
+const isNeedRefresh = (dotfile: IDotfileListObject): boolean => {
+  let { refresh_interval, last_refresh_ms, url } = dotfile
 
   if (!refresh_interval || refresh_interval <= 0) return false
   if (!url || !url.match(/^https?:\/\//i)) return false
@@ -33,12 +33,12 @@ const isNeedRefresh = (hosts: IHostsListObject): boolean => {
 const checkRefresh = async () => {
   // console.log('check refresh...')
   let list = await getList()
-  let remote_hosts = flatten(list).filter((h) => h.type === 'remote')
+  let remote_dotfiles = flatten(list).filter((h) => h.type === 'remote')
 
-  for (let hosts of remote_hosts) {
-    if (isNeedRefresh(hosts)) {
+  for (let dotfile of remote_dotfiles) {
+    if (isNeedRefresh(dotfile)) {
       try {
-        await refreshHosts(hosts.id)
+        await refreshDotfile(dotfile.id)
       } catch (e) {
         console.error(e)
       }

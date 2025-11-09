@@ -13,7 +13,7 @@ import useI18n from '@renderer/models/useI18n'
 import clsx from 'clsx'
 import React from 'react'
 import styles from './TrashcanItem.module.scss'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
 interface Props {
   data: ITrashcanListObject
@@ -22,7 +22,7 @@ interface Props {
 const TrashcanItem = (props: Props) => {
   const { data } = props
   const { lang } = useI18n()
-  const { hosts_data, loadHostsData } = useHostsData()
+  const { dotfile_data, loadDotfileData } = useDotfileData()
 
   const onSelect = (i: any) => {
     console.log(i)
@@ -31,12 +31,12 @@ const TrashcanItem = (props: Props) => {
   const menu_for_all = new PopupMenu([
     {
       label: lang.trashcan_clear,
-      enabled: hosts_data.trashcan.length > 0,
+      enabled: dotfile_data.trashcan.length > 0,
       click() {
         if (confirm(lang.trashcan_clear_confirm)) {
           actions
             .clearTrashcan()
-            .then(loadHostsData)
+            .then(loadDotfileData)
             .catch((e) => console.error(e))
         }
       },
@@ -48,7 +48,7 @@ const TrashcanItem = (props: Props) => {
       label: lang.trashcan_restore,
       click() {
         actions.restoreItemFromTrashcan(data.id).then((success) => {
-          success && loadHostsData()
+          success && loadDotfileData()
         })
       },
     },
@@ -56,11 +56,11 @@ const TrashcanItem = (props: Props) => {
       type: 'separator',
     },
     {
-      label: lang.hosts_delete,
+      label: lang.dotfile_delete,
       click() {
         if (confirm(lang.trashcan_delete_confirm)) {
           actions.deleteItemFromTrashcan(data.id).then((success) => {
-            success && loadHostsData()
+            success && loadDotfileData()
           })
         }
       },

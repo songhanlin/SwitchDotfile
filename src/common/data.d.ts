@@ -1,13 +1,14 @@
 import { ITreeNodeData } from './tree'
 
-export type HostsType = 'local' | 'remote' | 'group' | 'folder'
+export type DotfileType = 'local' | 'remote' | 'group' | 'folder' | 'system_file'
 export type FolderModeType = 0 | 1 | 2 // 0: 默认; 1: 单选; 2: 多选
 
-export interface IHostsListObject {
+export interface IDotfileListObject {
   id: string
   title?: string
   on?: boolean
-  type?: HostsType
+  type?: DotfileType
+  file_path?: string // dotfile 文件路径，如 ~/.zshrc, ~/.gitconfig
 
   // remote
   url?: string
@@ -21,14 +22,12 @@ export interface IHostsListObject {
   // folder
   folder_mode?: FolderModeType
   folder_open?: boolean
-  children?: IHostsListObject[]
-
-  is_sys?: boolean
+  children?: IDotfileListObject[]
 
   [key: string]: any
 }
 
-export interface IHostsContentObject {
+export interface IDotfileContentObject {
   id: string
   content: string
 
@@ -36,7 +35,7 @@ export interface IHostsContentObject {
 }
 
 export interface ITrashcanObject {
-  data: IHostsListObject
+  data: IDotfileListObject
   add_time_ms: number
   parent_id: string | null
 }
@@ -45,12 +44,12 @@ export interface ITrashcanListObject extends ITrashcanObject, ITreeNodeData {
   id: string
   children?: ITrashcanListObject[]
   is_root?: boolean
-  type?: HostsType | 'trashcan'
+  type?: DotfileType | 'trashcan'
 
   [key: string]: any
 }
 
-export interface IHostsHistoryObject {
+export interface IDotfileHistoryObject {
   id: string
   content: string
   add_time_ms: number
@@ -59,11 +58,12 @@ export interface IHostsHistoryObject {
 
 export type VersionType = [number, number, number, number]
 
-export interface IHostsBasicData {
-  list: IHostsListObject[]
+export interface IDotfileBasicData {
+  list: IDotfileListObject[]
   trashcan: ITrashcanObject[]
   version: VersionType
 }
+
 
 export interface IOperationResult {
   success: boolean

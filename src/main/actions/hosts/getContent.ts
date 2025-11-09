@@ -5,21 +5,21 @@
 
 import { configGet, getItemFromList, getList } from '@main/actions'
 import { swhdb } from '@main/data'
-import { IHostsContentObject } from '@common/data'
-import { findItemById, flatten } from '@common/hostsFn'
+import { IDotfileContentObject } from '@common/data'
+import { findItemById, flatten } from '@common/dotfileFn'
 
 const getContentById = async (id: string) => {
-  let hosts_content = await swhdb.collection.hosts.find<IHostsContentObject>((i) => i.id === id)
-  return hosts_content?.content || ''
+  let dotfile_content = await swhdb.collection.dotfile.find<IDotfileContentObject>((i: any) => i.id === id)
+  return dotfile_content?.content || ''
 }
 
-const getContentOfHosts = async (id: string): Promise<string> => {
-  let hosts = await getItemFromList(id)
-  if (!hosts) {
+const getContentOfDotfile = async (id: string): Promise<string> => {
+  let dotfile = await getItemFromList(id)
+  if (!dotfile) {
     return await getContentById(id)
   }
 
-  const { type } = hosts
+  const { type } = dotfile
   if (!type || type === 'local' || type === 'remote') {
     return await getContentById(id)
   }
@@ -27,14 +27,14 @@ const getContentOfHosts = async (id: string): Promise<string> => {
   let list = await getList()
 
   let multi_chose_folder_switch_all = await configGet('multi_chose_folder_switch_all')
-  let isSkipFolder = multi_chose_folder_switch_all && hosts.folder_mode !== 1
+  let isSkipFolder = multi_chose_folder_switch_all && dotfile.folder_mode !== 1
 
   if (type === 'folder' && !isSkipFolder) {
-    const items = flatten(hosts.children || [])
+    const items = flatten(dotfile.children || [])
 
     let a = await Promise.all(
       items.map(async (item) => {
-        return `# file: ${item.title}\n` + (await getContentOfHosts(item.id))
+        return `# file: ${item.title}\n` + (await getContentOfDotfile(item.id))
       }),
     )
     return a.join('\n\n')
@@ -42,11 +42,11 @@ const getContentOfHosts = async (id: string): Promise<string> => {
 
   if (type === 'group') {
     let a = await Promise.all(
-      (hosts.include || []).map(async (id) => {
+      (dotfile.include || []).map(async (id) => {
         let item = findItemById(list, id)
         if (!item) return ''
 
-        return `# file: ${item.title}\n` + (await getContentOfHosts(id))
+        return `# file: ${item.title}\n` + (await getContentOfDotfile(id))
       }),
     )
     return a.join('\n\n')
@@ -55,4 +55,5 @@ const getContentOfHosts = async (id: string): Promise<string> => {
   return ''
 }
 
-export default getContentOfHosts
+export default getContentOfDotfile
+export { getContentOfDotfile }

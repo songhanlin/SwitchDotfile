@@ -5,12 +5,12 @@
  */
 
 import { getList } from '@main/actions'
-import { IHostsListObject } from '@common/data'
-import { flatten } from '@common/hostsFn'
+import { IDotfileListObject } from '@common/data'
+import { flatten } from '@common/dotfileFn'
 import { Request, Response } from 'express'
 
 const list = async (req: Request, res: Response) => {
-  let list: IHostsListObject[]
+  let list: IDotfileListObject[]
   try {
     list = await getList()
   } catch (e: any) {

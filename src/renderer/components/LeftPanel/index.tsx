@@ -12,7 +12,7 @@ import events from '@common/events'
 import useI18n from '@renderer/models/useI18n'
 import React from 'react'
 import styles from './index.module.scss'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 
 interface Props {
   width: number
@@ -20,11 +20,11 @@ interface Props {
 
 const Index = (props: Props) => {
   const { lang } = useI18n()
-  const { hosts_data } = useHostsData()
+  const { dotfile_data } = useDotfileData()
 
   const menu = new PopupMenu([
     {
-      label: lang.hosts_add,
+      label: lang.dotfile_add,
       click() {
         agent.broadcast(events.add_new)
       },
@@ -34,7 +34,7 @@ const Index = (props: Props) => {
   return (
     <div className={styles.list} onContextMenu={() => menu.show()}>
       <List />
-      {hosts_data.trashcan.length > 0 ? <Trashcan /> : null}
+      {dotfile_data.trashcan.length > 0 ? <Trashcan /> : null}
     </div>
   )
 }

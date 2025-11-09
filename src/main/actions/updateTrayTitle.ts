@@ -7,7 +7,7 @@
 import { getList } from '@main/actions/index'
 import { cfgdb } from '@main/data'
 import { tray } from '@main/ui/tray'
-import { flatten } from '@common/hostsFn'
+import { flatten } from '@common/dotfileFn'
 
 export default async (show?: boolean, title?: string) => {
   if (!tray) return

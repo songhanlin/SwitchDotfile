@@ -17,7 +17,7 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { actions } from '@renderer/core/agent'
-import useHostsData from '@renderer/models/useHostsData'
+import useDotfileData from '@renderer/models/useDotfileData'
 import useI18n from '@renderer/models/useI18n'
 import React, { useRef, useState } from 'react'
 import styles from './ImportFromUrl.module.scss'
@@ -30,7 +30,7 @@ interface Props {
 const ImportFromUrl = (props: Props) => {
   const { is_show, setIsShow } = props
   const { lang } = useI18n()
-  const { loadHostsData, setCurrentHosts } = useHostsData()
+  const { loadDotfileData, setCurrentDotfile } = useDotfileData()
   const [url, setUrl] = useState('')
   const ipt_ref = React.useRef<HTMLInputElement>(null)
   const toast = useToast()
@@ -63,8 +63,8 @@ const ImportFromUrl = (props: Props) => {
           description: lang.import_done,
           isClosable: true,
         })
-        await loadHostsData()
-        setCurrentHosts(null)
+        await loadDotfileData()
+        setCurrentDotfile(null)
       } else {
         let description = lang.import_fail
         if (typeof r === 'string') {

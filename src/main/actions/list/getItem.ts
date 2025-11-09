@@ -4,10 +4,10 @@
  */
 
 import { getList } from '@main/actions'
-import { IHostsListObject } from '@common/data'
-import { findItemById } from '@common/hostsFn'
+import { IDotfileListObject } from '@common/data'
+import { findItemById } from '@common/dotfileFn'
 
-export default async (id: string): Promise<IHostsListObject | undefined> => {
+export default async (id: string): Promise<IDotfileListObject | undefined> => {
   let list = await getList()
   return findItemById(list, id)
 }

@@ -7,7 +7,7 @@
 import { getList } from '@main/actions'
 import { broadcast } from '@main/core/agent'
 import events from '@common/events'
-import { findItemById } from '@common/hostsFn'
+import { findItemById } from '@common/dotfileFn'
 import { Request, Response } from 'express'
 
 const toggle = async (req: Request, res: Response) => {

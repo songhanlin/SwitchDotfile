@@ -1,15 +1,15 @@
 {
-  "name": "switchhosts",
-  "productName": "SwitchHosts",
-  "version": "4.2.0.6119",
-  "description": "Switch hosts quickly!",
+  "name": "switchdotfile",
+  "productName": "SwitchDotfile",
+  "version": "4.2.0.6121",
+  "description": "Switch dotfile quickly!",
   "main": "./main.js",
   "author": {
     "name": "oldj",
     "email": "oldj.wu@gmail.com",
-    "url": "https://github.com/oldj/SwitchHosts"
+    "url": "https://github.com/oldj/SwitchDotfile"
   },
-  "homepage": "https://switchhosts.vercel.app",
+  "homepage": "https://switchdotfile.vercel.app",
   "scripts": {},
   "license": "Apache-2.0",
   "dependencies": {}

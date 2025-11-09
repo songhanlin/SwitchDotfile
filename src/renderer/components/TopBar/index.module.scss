@@ -55,3 +55,14 @@
   font-size: 10px;
   padding: 2px 6px;
 }
+
+.dotfile_icon {
+  margin-right: 6px;
+}
+
+.dotfile_title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
